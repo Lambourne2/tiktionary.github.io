@@ -274,7 +274,6 @@ nav ul li a.active::after {
 .about-image {
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
 }
 
 .about-image img {
