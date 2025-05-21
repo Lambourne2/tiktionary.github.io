@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Tiktionary</title>
+    <meta name="description" content="Technical documentation and project details for Tiktionary, the AI-powered tool that helps you chat with your saved TikToks.">
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Additional styles for documentation page */
+        .doc-section {
+            margin-bottom: 3rem;
+        }
+        
+        .doc-section h2 {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        .doc-section h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .doc-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .doc-section th, .doc-section td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .doc-section th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .doc-section tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .doc-section ul, .doc-section ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .doc-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-section code {
+            background-color: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .doc-nav {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        
+        .doc-nav ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .doc-nav ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-nav ul li a {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .doc-nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .doc-nav ul li a.active {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        .doc-nav ul ul {
+            padding-left: 1rem;
+        }
+        
+        .doc-content {
+            min-height: 70vh;
+        }
+        
+        @media (max-width: 992px) {
+            .doc-nav {
+                position: relative;
+                top: 0;
+                max-height: none;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Tiktionary Logo">
+                <span class="logo-text">Tiktionary</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>Technical Documentation</h1>
+                <p>Detailed information about Tiktionary's architecture, features, and implementation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Content -->
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="doc-nav">
+                        <h4>Contents</h4>
+                        <ul>
+                            <li><a href="#overview">1. Overview</a></li>
+                            <li><a href="#objectives">2. Objectives & Metrics</a></li>
+                            <li><a href="#personas">3. User Personas</a></li>
+                            <li><a href="#features">4. Features & Requirements</a>
+                                <ul>
+                                    <li><a href="#data-ingestion">4.1 Data Ingestion</a></li>
+                                    <li><a href="#processing">4.2 Processing & Indexing</a></li>
+                                    <li><a href="#retrieval">4.3 Retrieval & RAG</a></li>
+                                    <li><a href="#ui">4.4 Conversational UI</a></li>
+                                    <li><a href="#admin">4.5 Administration</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#non-functional">5. Non-Functional Requirements</a></li>
+                            <li><a href="#architecture">6. Technical Architecture</a></li>
+                            <li><a href="#setup">7. Setup Guide</a></li>
+                            <li><a href="#questions">8. Open Questions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="doc-content">
+                        <div id="overview" class="doc-section">
+                            <h2>1. Overview</h2>
+                            <h3>1.1 Purpose</h3>
+                            <p>Tiktionary is a Retrieval-Augmented Generation (RAG)–powered conversational assistant that leverages the full context of TikTok videos a user has liked or saved—including metadata and transcripts—to deliver personalized, context-aware interactions.</p>
+                            
+                            <h3>1.2 Scope</h3>
+                            <ul>
+                                <li>Ingest and index user's liked/saved TikTok videos (metadata, captions, transcripts)</li>
+                                <li>Enable natural-language querying over that content</li>
+                                <li>Generate responses grounded in video context and related metadata</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="objectives" class="doc-section">
+                            <h2>2. Objectives & Success Metrics</h2>
+                            
+                            <h3>2.1 Objectives</h3>
+                            <ul>
+                                <li><strong>Personalized Engagement:</strong> Let users chat with their TikTok-based assistant about saved content</li>
+                                <li><strong>Contextual Accuracy:</strong> Leverage transcripts + metadata to answer user questions precisely</li>
+                                <li><strong>Scalable Pipeline:</strong> Handle large libraries of video data at low latency</li>
+                            </ul>
+                            
+                            <h3>2.2 Success Metrics</h3>
+                            <ul>
+                                <li><strong>Precision@k</strong> for relevant video retrieval ≥ 90%</li>
+                                <li><strong>Average response time</strong> ≤ 2 seconds</li>
+                                <li><strong>User satisfaction</strong> (survey) ≥ 4/5</li>
+                                <li><strong>Adoption rate:</strong> 20% of beta users actively engaging weekly</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="personas" class="doc-section">
+                            <h2>3. User Personas & Journeys</h2>
+                            
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Persona</th>
+                                        <th>Description</th>
+                                        <th>Needs</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Content Explorer</td>
+                                        <td>Heavy TikTok user who saves educational clips</td>
+                                        <td>Quick summary, bookmarks recalls</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trend Researcher</td>
+                                        <td>Social media analyst tracking trends</td>
+                                        <td>Metadata filtering, bulk insights</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Casual Chat User</td>
+                                        <td>Wants fun interactions based on liked videos</td>
+                                        <td>Simple Q&A, recommendations, chat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div id="features" class="doc-section">
+                            <h2>4. Features & Requirements</h2>
+                            
+                            <div id="data-ingestion">
+                                <h3>4.1 Data Ingestion</h3>
+                                <ul>
+                                    <li><strong>API Integration:</strong> Pull user's liked/saved video list via TikTok API or scraping</li>
+                                    <li><strong>Metadata Capture:</strong> Video ID, creator, timestamp, hashtags, likes, shares</li>
+                                    <li><strong>Transcript Extraction:</strong> Use ASR or TikTok captions</li>
+                                    <li><strong>Storage:</strong> Store raw media metadata in a document store (e.g., MongoDB)</li>
+                                </ul>
+                            </div>
+                            
+                            <div id="processing">
+                                <h3>4.2 Processing & Indexing</h3>
+                                <ul>
+                                    <li><strong>Text Chunking:</strong> Split transcripts into semantically coherent chunks (e.g., 300–500 tokens)</li>
+                                    <li><strong>Embedding Generation:</strong> Encode chunks + metadata embeddings via pre-trained models (e.g., OpenAI embeddings, or clip-text)</li>
+                                    <li><strong>Vector Store:</strong> Index embeddings in FAISS or Pinecone</li>
+                                    <li><strong>Metadata Index:</strong> Secondary index for filtering by tag, date, creator</li>
+                                </ul>
+                            </div>
+                            
+                            <div id="retrieval">
+                                <h3>4.3 Retrieval & RAG</h3>
+                                <ul>
+                                    <li><strong>Retrieval Module:</strong> Given user query, perform similarity search & metadata filters</li>
+                                    <li><strong>Prompt Construction:</strong> Assemble top-k chunks + metadata into LLM prompt template</li>
+                                    <li><strong>LLM Interaction:</strong> Generate answers via GPT-4 or Google Gemini with context</li>
+                                    <li><strong>Response Post-Processing:</strong> Clean up hallucinations, cite source video IDs</li>
+                                </ul>
+                            </div>
+                            
+                            <div id="ui">
+                                <h3>4.4 Conversational UI</h3>
+                                <ul>
+                                    <li><strong>Chat Interface:</strong> Web or mobile chat window</li>
+                                    <li><strong>Context Window:</strong> Show relevant video titles/thumbnails cited</li>
+                                    <li><strong>Follow-Ups:</strong> Allow users to ask clarifying or deeper questions, with conversation memory</li>
+                                </ul>
+                            </div>
+                            
+                            <div id="admin">
+                                <h3>4.5 Administration & Monitoring</h3>
+                                <ul>
+                                    <li><strong>Usage Dashboard:</strong> Track ingestion volumes, query metrics, retrieval quality</li>
+                                    <li><strong>Error Logging:</strong> ASR failures, embedding errors, API issues</li>
+                                    <li><strong>Security & Privacy:</strong> OAuth for TikTok auth, encryption at rest, GDPR compliance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div id="non-functional" class="doc-section">
+                            <h2>5. Non-Functional Requirements</h2>
+                            <ul>
+                                <li><strong>Scalability:</strong> Support 500k videos per user library, horizontal scaling of embedding/index services</li>
+                                <li><strong>Performance:</strong> End-to-end query (retail + generation) < 2 seconds P95</li>
+                                <li><strong>Reliability:</strong> 99.9% uptime SLA</li>
+                                <li><strong>Security:</strong> OAuth token storage, HTTPS, RBAC for admin</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="architecture" class="doc-section">
+                            <h2>6. Technical Architecture</h2>
+                            <ol>
+                                <li><strong>Ingestion Service</strong> ⟶ TikTok API / Scraper ⟶ Metadata Store</li>
+                                <li><strong>Transcription Pipeline</strong> ⟶ ASR Service ⟶ Raw Text Store</li>
+                                <li><strong>Indexer</strong> ⟶ Chunking & Embedding Generator ⟶ Vector DB + Metadata DB</li>
+                                <li><strong>RAG API</strong> ⟶ Retrieval & LLM ⟶ Chat API</li>
+                                <li><strong>Frontend</strong> ⟶ Chat UI (React/Next.js)</li>
+                                <li><strong>Monitoring</strong> ⟶ Prometheus/Grafana, Sentry</li>
+                            </ol>
+                        </div>
+                        
+                        <div id="setup" class="doc-section">
+                            <h2>7. Setup Guide</h2>
+                            
+                            <h3>7.1 Prerequisites</h3>
+                            <ul>
+                                <li>Python 3.8+</li>
+                                <li>MongoDB</li>
+                                <li>Vector database (FAISS or Pinecone)</li>
+                                <li>TikTok Developer Account (for API access)</li>
+                                <li>OpenAI API key or other LLM provider</li>
+                            </ul>
+                            
+                            <h3>7.2 Installation</h3>
+                            <p>Clone the repository:</p>
+                            <pre><code>git clone https://github.com/Lambourne2/tiktionary.git
+cd tiktionary</code></pre>
+                            
+                            <p>Install dependencies:</p>
+                            <pre><code>pip install -r requirements.txt</code></pre>
+                            
+                            <p>Configure environment variables:</p>
+                            <pre><code>cp .env.example .env
+# Edit .env with your API keys and configuration</code></pre>
+                            
+                            <h3>7.3 Running the Application</h3>
+                            <p>Start the backend services:</p>
+                            <pre><code>python src/main.py</code></pre>
+                            
+                            <p>In a separate terminal, start the frontend:</p>
+                            <pre><code>cd frontend
+npm install
+npm run dev</code></pre>
+                            
+                            <p>Access the application at <code>http://localhost:3000</code></p>
+                        </div>
+                        
+                        <div id="questions" class="doc-section">
+                            <h2>8. Open Questions & Clarifications</h2>
+                            <ol>
+                                <li><strong>API Access:</strong> Do we have access to TikTok's official API for liked/saved lists or do we need to implement scraping?</li>
+                                <li><strong>Transcript Quality:</strong> Should we rely solely on TikTok-provided captions or integrate a custom ASR model?</li>
+                                <li><strong>Volume & Scale:</strong> What is the expected average and peak number of videos per user?</li>
+                                <li><strong>Privacy:</strong> What retention policy do we enforce for user data?</li>
+                                <li><strong>LLM Choice & Budget:</strong> Preferred model (OpenAI vs. in-house)?</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Ready to Contribute?</h2>
+                <p>Join our GitHub repository and help build Tiktionary.</p>
+                <a href="https://github.com/Lambourne2/tiktionary" target="_blank" class="btn btn-primary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Tiktionary Logo">
+                        <span>Tiktionary</span>
+                    </div>
+                    <p>Chat with your saved TikToks using AI-powered retrieval and generation.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/Lambourne2/tiktionary" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tiktionary. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Documentation page specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight active section in navigation
+            const sections = document.querySelectorAll('.doc-section');
+            const navLinks = document.querySelectorAll('.doc-nav a');
+            
+            function highlightNavigation() {
+                let scrollPosition = window.scrollY;
+                
+                // Add offset for header
+                scrollPosition += 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        const id = section.getAttribute('id');
+                        
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // Initial highlight
+            highlightNavigation();
+            
+            // Update on scroll
+            window.addEventListener('scroll', highlightNavigation);
+        });
+    </script>
+</body>
+</html>
